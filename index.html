@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Petal &amp; Pixel Photography</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito:wght@400;600;800&display=swap">
+<style>
+/* Layout: soft, joyful studio — blush ground, plum type, rounded photo cards and a gentle scrapbook rhythm */
+:root{
+  --blush:#fdf1f0; --rose:#f4c9c4; --plum:#4a2342; --berry:#b8476a; --sage:#9fb8a2; --ink:#2d1f2b; --soft:#7a6574;
+  --display:"DM Serif Display", Georgia, serif; --body:"Nunito", system-ui, sans-serif;
+  color-scheme: light;
+}
+*{box-sizing:border-box}
+body{background:var(--blush);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.7}
+.wrap{max-width:1160px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.08;margin:0;text-wrap:balance;color:var(--plum)}
+h2{font-size:clamp(2rem,4.5vw,3.1rem)}
+.tag{display:inline-block;background:#fff;color:var(--berry);font-weight:800;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;padding:.35rem .9rem;border-radius:999px}
+a{color:inherit}
+.btn{display:inline-block;background:var(--plum);color:#fff;padding:.9rem 1.7rem;border-radius:999px;text-decoration:none;font-weight:800;font-size:.92rem}
+.btn.ghost{background:transparent;color:var(--plum);border:2px solid var(--plum)}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--berry);outline-offset:3px}
+.ph{position:relative;overflow:hidden;border-radius:22px;background:linear-gradient(140deg,hsl(var(--h,340) 60% 82%),hsl(calc(var(--h,340) + 35) 45% 60%));max-width:100%}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+section{padding-block:5rem}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(253,241,240,.94);backdrop-filter:blur(8px)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--blush)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:1rem}
+.logo{font-family:var(--display);font-size:1.55rem;color:var(--plum);text-decoration:none}
+.logo i{color:var(--berry)}
+.nav ul{display:flex;gap:1.8rem;list-style:none;margin:0;padding:0;font-weight:600;font-size:.92rem}
+.nav ul a{text-decoration:none;color:var(--soft)}.nav ul a:hover{color:var(--berry)}
+.menu-btn{display:none;background:#fff;border:0;border-radius:10px;color:var(--plum);padding:.35rem .75rem;font-size:1.1rem;cursor:pointer}
+@media (max-width:860px){
+  .menu-btn{display:block}.nav>.btn{display:none}
+  .nav ul{display:none;position:absolute;left:0;right:0;top:100%;background:var(--blush);flex-direction:column;gap:0;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:.5rem 1rem}
+  .nav ul.open{display:flex}.nav ul a{display:block;padding:.6rem 0}
+}
+/* hero */
+.hero{padding-block:2.5rem 4rem}
+.hero-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:3rem;align-items:center}
+.hero h1{font-size:clamp(2.8rem,6.5vw,5rem);margin:1rem 0}
+.hero h1 i{color:var(--berry)}
+.hero p{color:var(--soft);max-width:30em;margin:0 0 2rem}
+.hero-cta{display:flex;flex-wrap:wrap;gap:.8rem}
+.collage{position:relative;display:grid;grid-template-columns:1.2fr 1fr;grid-template-rows:auto auto;gap:14px}
+.collage .ph:nth-child(1){grid-row:span 2;aspect-ratio:3/4.4}
+.collage .ph:nth-child(2),.collage .ph:nth-child(3){aspect-ratio:1/1}
+.badge{position:absolute;left:-10px;bottom:24px;background:#fff;border-radius:18px;padding:.9rem 1.2rem;box-shadow:0 10px 30px rgba(74,35,66,.15)}
+.badge b{display:block;font-family:var(--display);font-size:1.8rem;color:var(--plum);line-height:1}
+.badge span{font-size:.78rem;color:var(--soft)}
+@media (max-width:860px){.hero-grid{grid-template-columns:1fr}.badge{left:10px}}
+/* services */
+.center{text-align:center;max-width:620px;margin:0 auto 3rem}
+.center p{color:var(--soft)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.card{background:#fff;border-radius:26px;padding:12px 12px 1.4rem}
+.card .ph{aspect-ratio:4/3;border-radius:18px}
+.card h3{font-size:1.5rem;margin:1rem .6rem .3rem}
+.card p{margin:0 .6rem;color:var(--soft);font-size:.93rem}
+.card .from{display:block;margin:.8rem .6rem 0;font-weight:800;color:var(--berry);font-size:.85rem}
+@media (max-width:900px){.cards{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.cards{grid-template-columns:1fr}}
+/* story */
+.story{background:var(--plum);color:#f7e8ee;border-radius:36px;margin-inline:max(16px,env(safe-area-inset-left,0px))}
+.story h2{color:#fff}
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:center}
+.story .ph{aspect-ratio:5/4}
+.story p{opacity:.85;max-width:56ch}
+.steps{list-style:none;padding:0;margin:1.8rem 0 0;display:grid;gap:1rem;counter-reset:s}
+.steps li{display:grid;grid-template-columns:2.4rem 1fr;gap:.8rem;align-items:start;counter-increment:s}
+.steps li::before{content:counter(s);display:grid;place-items:center;width:2.4rem;height:2.4rem;border-radius:50%;background:var(--rose);color:var(--plum);font-weight:800}
+.steps b{display:block;color:#fff}
+@media (max-width:860px){.story-grid{grid-template-columns:1fr}}
+/* gallery */
+.grid-g{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:180px;gap:12px}
+.grid-g .ph{height:100%}
+.grid-g .big{grid-column:span 2;grid-row:span 2}
+.grid-g .tall{grid-row:span 2}
+@media (max-width:760px){.grid-g{grid-template-columns:1fr 1fr;grid-auto-rows:150px}}
+/* reviews */
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.rev{background:#fff;border-radius:24px;padding:1.8rem}
+.stars{color:var(--berry);letter-spacing:.2em}
+.rev p{margin:.8rem 0 1.2rem}
+.rev b{color:var(--plum)}.rev span{display:block;font-size:.82rem;color:var(--soft)}
+@media (max-width:900px){.reviews{grid-template-columns:1fr}}
+/* booking */
+.book{display:grid;grid-template-columns:1fr 1.1fr;gap:3rem;align-items:start}
+.info p{color:var(--soft);margin:.2rem 0 1.2rem;user-select:text}
+.info h4{margin:0;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--berry)}
+form{background:#fff;border-radius:28px;padding:2rem;display:grid;gap:1rem}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+label{display:grid;gap:.35rem;font-weight:700;font-size:.85rem;color:var(--plum)}
+input,select,textarea{font:inherit;padding:.75rem .9rem;border:1.5px solid var(--rose);border-radius:12px;background:var(--blush);color:var(--ink);width:100%}
+form button{border:0;cursor:pointer;justify-self:start}
+.ok{background:var(--sage);color:#1f3322;border-radius:12px;padding:.8rem 1rem;font-weight:700}
+@media (max-width:860px){.book,.row{grid-template-columns:1fr}}
+footer{padding-block:2rem;color:var(--soft);font-size:.85rem}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;border-top:1px solid var(--rose);padding-top:1.5rem}
+.wa{position:fixed;right:calc(18px + env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:40;background:#25d366;color:#fff;font-weight:800;text-decoration:none;padding:.8rem 1.1rem;border-radius:999px;font-size:.88rem;box-shadow:0 8px 22px rgba(0,0,0,.2)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#home">Petal <i>&amp;</i> Pixel</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">☰</button>
+    <ul id="menu">
+      <li><a href="#home">Home</a></li><li><a href="#services">Services</a></li><li><a href="#story">How It Works</a></li>
+      <li><a href="#gallery">Gallery</a></li><li><a href="#reviews">Reviews</a></li><li><a href="#book">Book</a></li>
+    </ul>
+    <a class="btn" href="#book">Book a Shoot</a>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="tag">Sivakasi · Tamil Nadu</span>
+      <h1>Capturing moments, <i>creating</i> memories.</h1>
+      <p>Weddings, pre-wedding stories, maternity glow, tiny newborn toes and polished product shots. Cinematic storytelling with a soft, happy finish.</p>
+      <div class="hero-cta"><a class="btn" href="#book">Book a Shoot</a><a class="btn ghost" href="#gallery">See Our Work</a></div>
+    </div>
+    <div class="collage">
+      <div class="ph" style="--h:340"><img src="https://images.unsplash.com/photo-1610173827043-9db50e0d8ef9?w=700&q=80&auto=format&fit=crop" alt="Bride" onerror="this.remove()"></div>
+      <div class="ph" style="--h:20"><img src="https://images.unsplash.com/photo-1617331140180-e8262094733a?w=600&q=80&auto=format&fit=crop" alt="Baby" onerror="this.remove()"></div>
+      <div class="ph" style="--h:130"><img src="https://images.unsplash.com/photo-1490723186985-6d7672633c86?w=600&q=80&auto=format&fit=crop" alt="Couple" onerror="this.remove()"></div>
+      <div class="badge"><b>850+</b><span>happy families since 2017</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="services" style="padding-top:2rem">
+  <div class="wrap">
+    <div class="center"><span class="tag">Our Services</span><h2 style="margin-top:.8rem">Every chapter, beautifully told</h2><p>Pick a session or combine them into a family package.</p></div>
+    <div class="cards">
+      <div class="card"><div class="ph" style="--h:345"><img src="https://images.unsplash.com/photo-1722952934708-749c22eb2e58?w=800&q=80&auto=format&fit=crop" alt="" loading="lazy" onerror="this.remove()"></div><h3>Wedding</h3><p>Full-day candid and traditional coverage with a cinematic film.</p><span class="from">From ₹45,000</span></div>
+      <div class="card"><div class="ph" style="--h:10"><img src="https://images.unsplash.com/photo-1617724975854-70b5d0cedb0a?w=800&q=80&auto=format&fit=crop" alt="" loading="lazy" onerror="this.remove()"></div><h3>Pre-Wedding</h3><p>Outdoor story shoots at temples, beaches or hill stations.</p><span class="from">From ₹18,000</span></div>
+      <div class="card"><div class="ph" style="--h:300"><img src="https://images.unsplash.com/photo-1773243086577-5a98bc868a2f?w=800&q=80&auto=format&fit=crop" alt="" loading="lazy" onerror="this.remove()"></div><h3>Maternity</h3><p>Gowns, soft light and calm direction for your most graceful months.</p><span class="from">From ₹9,500</span></div>
+      <div class="card"><div class="ph" style="--h:40"><img src="https://images.unsplash.com/photo-1533483595632-c5f0e57a1936?w=800&q=80&auto=format&fit=crop" alt="" loading="lazy" onerror="this.remove()"></div><h3>Baby &amp; Newborn</h3><p>Safe, cosy studio sets with themed props for 0–24 months.</p><span class="from">From ₹7,500</span></div>
+      <div class="card"><div class="ph" style="--h:270"><img src="https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=800&q=80&auto=format&fit=crop" alt="" loading="lazy" onerror="this.remove()"></div><h3>Modeling</h3><p>Portfolio shoots with outfit changes and retouched portraits.</p><span class="from">From ₹6,000</span></div>
+      <div class="card"><div class="ph" style="--h:150"><img src="https://images.unsplash.com/photo-1533091090875-1ff4acc497dd?w=800&q=80&auto=format&fit=crop" alt="" loading="lazy" onerror="this.remove()"></div><h3>Product</h3><p>Clean catalogue and Instagram-ready shots for local brands.</p><span class="from">From ₹250 / product</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="story" id="story">
+  <div class="wrap story-grid">
+    <div class="ph" style="--h:330"><img src="https://images.unsplash.com/photo-1615966650071-855b15f29ad1?w=1000&q=80&auto=format&fit=crop" alt="Photographer with family" loading="lazy" onerror="this.remove()"></div>
+    <div>
+      <span class="tag">How It Works</span>
+      <h2 style="margin-top:.8rem">From first call to final album</h2>
+      <p>We keep things simple so you can enjoy the day.</p>
+      <ol class="steps">
+        <li><div><b>Share your date</b>Tell us the event, venue and the feel you love.</div></li>
+        <li><div><b>Plan together</b>We suggest locations, outfits and a shot list.</div></li>
+        <li><div><b>Shoot day</b>Relaxed direction, lots of laughs, no stiff poses.</div></li>
+        <li><div><b>Gallery + album</b>Edited photos online in 10 days; album in 4 weeks.</div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="wrap">
+    <div class="center"><span class="tag">Gallery</span><h2 style="margin-top:.8rem">A little of our favourite work</h2></div>
+    <div class="grid-g">
+      <div class="ph big" style="--h:340"><img src="https://images.unsplash.com/photo-1599462616558-2b75fd26a283?w=900&q=80&auto=format&fit=crop" alt="Wedding" loading="lazy" onerror="this.remove()"></div>
+      <div class="ph" style="--h:20"><img src="https://images.unsplash.com/photo-1510154221590-ff63e90a136f?w=600&q=80&auto=format&fit=crop" alt="Baby" loading="lazy" onerror="this.remove()"></div>
+      <div class="ph tall" style="--h:290"><img src="https://images.unsplash.com/photo-1622277430358-f4d134452e2e?w=600&q=80&auto=format&fit=crop" alt="Maternity" loading="lazy" onerror="this.remove()"></div>
+      <div class="ph" style="--h:130"><img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=600&q=80&auto=format&fit=crop" alt="Couple" loading="lazy" onerror="this.remove()"></div>
+      <div class="ph tall" style="--h:50"><img src="https://images.unsplash.com/photo-1587271315307-eaebc181c749?w=600&q=80&auto=format&fit=crop" alt="Model" loading="lazy" onerror="this.remove()"></div>
+      <div class="ph" style="--h:310"><img src="https://images.unsplash.com/photo-1542042161784-26ab9e041e89?w=600&q=80&auto=format&fit=crop" alt="Product" loading="lazy" onerror="this.remove()"></div>
+      <div class="ph big" style="--h:0"><img src="https://images.unsplash.com/photo-1630526720753-aa4e71acf67d?w=900&q=80&auto=format&fit=crop" alt="Pre-wedding" loading="lazy" onerror="this.remove()"></div>
+      <div class="ph" style="--h:160"><img src="https://images.unsplash.com/photo-1582486225644-aeacf6aa0b1b?w=600&q=80&auto=format&fit=crop" alt="Family" loading="lazy" onerror="this.remove()"></div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews" style="padding-top:1rem">
+  <div class="wrap">
+    <div class="center"><span class="tag">Kind Words</span><h2 style="margin-top:.8rem">Loved by our families</h2></div>
+    <div class="reviews">
+      <div class="rev"><div class="stars">★★★★★</div><p>“Our pre-wedding shoot felt like a fun day out with friends. The photos look straight out of a movie.”</p><b>Deepa &amp; Vignesh</b><span>Pre-wedding · Kodaikanal</span></div>
+      <div class="rev"><div class="stars">★★★★★</div><p>“So patient with our 2-month-old. Every set was clean and cosy. The newborn album is our treasure.”</p><b>Sangeetha</b><span>Newborn · Sivakasi</span></div>
+      <div class="rev"><div class="stars">★★★★★</div><p>“Our product photos doubled the enquiries on Instagram. Fast delivery and very fair pricing.”</p><b>Ravi, Sri Crackers</b><span>Product · Sivakasi</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="book" style="padding-top:1rem">
+  <div class="wrap book">
+    <div class="info">
+      <span class="tag">Book a Shoot</span>
+      <h2 style="margin:.8rem 0 1.5rem">Let's plan your session</h2>
+      <h4>Studio</h4><p>27, Velayutham Road, Sivakasi, Tamil Nadu – 626123</p>
+      <h4>Call / WhatsApp</h4><p>+91 98940 55667</p>
+      <h4>Email</h4><p>hello@petalandpixel.in</p>
+      <h4>Hours</h4><p>Tue – Sun, 10:00 AM – 8:00 PM</p>
+    </div>
+    <form id="bookForm">
+      <div class="row">
+        <label for="name">Your name<input id="name" required placeholder="Priya Ramesh"></label>
+        <label for="phone">Phone<input id="phone" type="tel" required placeholder="+91 98xxx xxxxx"></label>
+      </div>
+      <div class="row">
+        <label for="type">Shoot type<select id="type"><option>Wedding</option><option>Pre-Wedding</option><option>Maternity</option><option>Baby &amp; Newborn</option><option>Modeling</option><option>Product</option></select></label>
+        <label for="date">Preferred date<input id="date" type="date"></label>
+      </div>
+      <label for="msg">Anything we should know?<textarea id="msg" rows="4" placeholder="Venue, number of guests, ideas you love…"></textarea></label>
+      <button class="btn" type="submit">Send Enquiry</button>
+      <div class="ok" id="ok" hidden>Thank you! This is a sample site, so the enquiry wasn't sent. On the live site it goes straight to the studio's WhatsApp.</div>
+    </form>
+  </div>
+</section>
+<footer><div class="wrap"><span>© 2026 Petal &amp; Pixel Photography</span><span>Instagram · Facebook · YouTube</span></div></footer>
+<a class="wa" href="https://wa.me/919894055667" target="_blank" rel="noopener">WhatsApp</a>
+
+<script>
+const btn=document.getElementById('menuBtn'),menu=document.getElementById('menu');
+btn.addEventListener('click',()=>{const o=menu.classList.toggle('open');btn.setAttribute('aria-expanded',o)});
+menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>menu.classList.remove('open')));
+document.getElementById('bookForm').addEventListener('submit',e=>{e.preventDefault();document.getElementById('ok').hidden=false});
+</script>
+
+</body>
+</html>
